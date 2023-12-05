@@ -1,0 +1,19 @@
+<!-- cargar base.html -->
+{% extends 'base.html' %}
+{% load static %}
+
+<!-- nav -->
+{% block nav %}
+<a class="nav-link active" aria-current="page" href="{% url 'index' %}">Home</a>
+<a class="nav-link" href="{% url 'usuario' %}">Cargar cliente</a>
+<a class="nav-link" href="{% url 'producto' %}">Cargar producto</a>
+<a class="nav-link" href="{% url 'experiencia' %}">Tu experiencia</a>
+{% endblock %}
+
+<!-- section -->
+{% block section %}
+<div class="mt-5 container">
+    <h1 class="text-center">Bienvenido!</h1>
+    <p class="mt-3">Lorem ipsum, dolor sit amet consectetur adipisicing elit. Modi aut eos deleniti rem sapiente id alias perspiciatis fuga adipisci, molestiae, magnam perferendis voluptatum fugit quod excepturi provident eius nihil ad. Blanditiis consequatur tempora doloribus aliquam odio eligendi minus quisquam dolores et, repellendus sunt, ea nemo harum! Officiis nostrum quia dolorem ullam corporis reiciendis enim magni deserunt autem magnam. Neque quia sed soluta, corrupti tenetur dicta libero nam dignissimos quod reiciendis saepe sapiente eligendi illo quo ipsum. Quos, unde ipsa numquam architecto sint repudiandae hic rem voluptatum quasi, atque qui, repellat veritatis laboriosam porro tempora impedit dignissimos a magnam at quas. </p>
+</div>
+{% endblock section %}

@@ -1,0 +1,9 @@
+.carousel img {
+    max-height: 85vh;
+    object-fit: cover;
+}
+
+#photo1 {
+    object-position: bottom;
+
+}
