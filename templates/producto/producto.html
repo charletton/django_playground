@@ -1,0 +1,25 @@
+<!-- cargar base.html -->
+{% extends 'base.html' %}
+{% load static %}
+
+<!-- title -->
+{% block title %}
+<title>Producto</title>
+{% endblock title %}
+
+<!-- section -->
+{% block section %}
+    {% if formulario.errors %}
+        <div class="alert alert-danger">
+            <strong>Error:</strong> Revisa los datos ingresados.
+        </div>
+    {% endif %}
+
+    <form action="{% url 'producto' %}" method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <table>
+            {{ formulario.as_table }}
+        </table>
+        <input type="submit" value="Enviar" class="btn btn-primary">
+    </form>
+{% endblock section %}

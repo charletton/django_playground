@@ -1,0 +1,29 @@
+<!-- cargar html base -->
+{% extends 'base.html' %}
+{% load static %}
+
+<!-- title -->
+{% block title %}
+<title>Editar usuario</title>
+{% endblock title %}
+
+<!-- section -->
+{% block section %}
+    {% if mi_formulario.errors %}
+        <p>Revisar datos</p>
+    {% endif %}
+
+    <h1>Formulario - Editar Perfil</h1>
+    <h1>De {{usuario}}</h1>
+    
+
+    <form action="" method="POST">{% csrf_token %}
+        <table>
+            {{ miFormulario }}
+        </table>
+        <input type="submit", value="Enviar">
+    </form>  
+
+    <a href="{%url 'editar_contrasenia'%}">Cambiar constrasena</a>
+
+{% endblock section %}

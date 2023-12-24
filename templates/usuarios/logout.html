@@ -1,0 +1,14 @@
+<!-- cargar html base -->
+{% extends 'base.html' %}
+{% load static %}
+
+<!-- title -->
+{% block title %}
+<title>Login</title>
+{% endblock title %}
+
+<!-- section -->
+{% block section %}
+<h1>Deslogueado!</h1>
+<a href="{%url 'index'%}">Volver al menu</a>
+{% endblock section %}

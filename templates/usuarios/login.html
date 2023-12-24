@@ -1,0 +1,22 @@
+<!-- cargar html base -->
+{% extends 'base.html' %}
+{% load static %}
+
+<!-- title -->
+{% block title %}
+<title>Login</title>
+{% endblock title %}
+
+<!-- section -->
+{% block section %}
+<h1>Login</h1>
+
+<form action="" method="POST">
+    {% csrf_token %}
+        {{ form.as_p }}
+    <button type="submit">Inciar sesion</button>
+</form>
+<p>No tienes usuario?, <a href="{% url 'registro' %}">Registrate!</a></p>
+
+
+{% endblock section %}

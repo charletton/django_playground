@@ -1,0 +1,21 @@
+<!-- cargar html base -->
+{% extends 'base.html' %}
+{% load static %}
+
+<!-- title -->
+{% block title %}
+<title>Lista de productos</title>
+{% endblock title %}
+
+<!-- section -->
+{% block section %}
+    {% for p in productos %}
+        <li>{{ p.modelo }}</li>
+        {% if p.imagenProducto %}
+            <img src="{{ p.imagenProducto.url }}" class="imagenes" alt="{{ p.modelo }} Imagen" >
+        {% endif %}
+        <button>
+            <a href="{% url 'eliminarProducto' p.modelo %}">Eliminar</a>
+        </button>
+    {% endfor %}
+{% endblock section %}
