@@ -8,8 +8,34 @@
 
 }
 
-
-.imagenes {
-    width: 200px !important;
-    height: 200px !important ;
+body {
+    background-color: gray;
 }
+
+.producto-container {
+    margin-top: 20px;
+}
+
+.producto {
+    border: 1px solid #ddd;
+    padding: 10px;
+    margin-bottom: 20px;
+}
+
+.producto img {
+    max-width: 100%;
+    height: auto;
+}
+
+.eliminar-btn {
+    background-color: #dc3545;
+    color: #fff;
+    border: none;
+    padding: 5px 10px;
+    cursor: pointer;
+}
+
+.eliminar-btn:hover {
+    background-color: #c82333;
+}
+ 

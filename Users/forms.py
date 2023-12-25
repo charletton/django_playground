@@ -1,4 +1,5 @@
 from django import forms
+from .models import Producto
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
@@ -25,7 +26,7 @@ class UserEditForm(UserChangeForm):
         fields = ['email','username', 'last_name', 'first_name']
 
 
-class ProductoFormulario(forms.Form):
+class ProductoFormulario(forms.ModelForm):
     MODELOS_CHOICES = [
         ('T61', 'ThinkPad T61'),
         ('X60', 'ThinkPad X60'),
@@ -35,10 +36,11 @@ class ProductoFormulario(forms.Form):
         ('X280', 'ThinkPad X280'),
     ]
     modelo = forms.ChoiceField(choices=MODELOS_CHOICES)
-    descripcion = forms.CharField()
-    imagen = forms.ImageField()
 
-
+    class Meta:
+        model = Producto  # Agrega esta línea para especificar el modelo
+        fields = ['modelo', 'descripcion', 'imagenProducto']
+ 
 class ExperienciaFormulario(forms.Form):
     mensaje = forms.CharField(widget =forms.Textarea)
     puntaje = forms.IntegerField()

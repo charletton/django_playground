@@ -17,9 +17,7 @@
 
     <form action="{% url 'producto' %}" method="post" enctype="multipart/form-data">
         {% csrf_token %}
-        <table>
-            {{ formulario.as_table }}
-        </table>
+        {{ formulario.as_p }}
         <input type="submit" value="Enviar" class="btn btn-primary">
     </form>
 {% endblock section %}

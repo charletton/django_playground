@@ -9,13 +9,24 @@
 
 <!-- section -->
 {% block section %}
-    {% for p in productos %}
-        <li>{{ p.modelo }}</li>
-        {% if p.imagenProducto %}
-            <img src="{{ p.imagenProducto.url }}" class="imagenes" alt="{{ p.modelo }} Imagen" >
-        {% endif %}
-        <button>
-            <a href="{% url 'eliminarProducto' p.modelo %}">Eliminar</a>
-        </button>
-    {% endfor %}
+    <div class="container mt-4">
+        <div class="row">
+            {% for p in productos %}
+                <div class="col-md-6 mb-4">
+                    <div class="card">
+                        {% if p.imagenProducto %}
+                            <img src="{{ p.imagenProducto.url }}" class="card-img-top" alt="{{ p.modelo }} Imagen">
+                        {% endif %}
+                        <div class="card-body">
+                            <h5 class="card-title">{{ p.modelo }}</h5>
+                            <p class="card-text"> {{ p.descripcion }}</p>
+                            <button class="btn btn-danger">
+                                <a href="{% url 'eliminarProducto' p.modelo %}" style="text-decoration: none; color: #fff;">Eliminar</a>
+                            </button>
+                        </div>
+                    </div>
+                </div>
+            {% endfor %}
+        </div>
+    </div>
 {% endblock section %}
