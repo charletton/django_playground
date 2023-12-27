@@ -9,24 +9,29 @@
 
 <!-- section -->
 {% block section %}
-    <div class="container mt-4">
-        <div class="row">
-            {% for p in productos %}
-                <div class="col-md-6 mb-4">
-                    <div class="card">
-                        {% if p.imagenProducto %}
-                            <img src="{{ p.imagenProducto.url }}" class="card-img-top" alt="{{ p.modelo }} Imagen">
-                        {% endif %}
-                        <div class="card-body">
-                            <h5 class="card-title">{{ p.modelo }}</h5>
-                            <p class="card-text"> {{ p.descripcion }}</p>
+<div class="container mt-4">
+    <div class="row">
+        {% for p in productos %}
+            <div class="col-sm-6 mb-4">
+                <div class="card">
+                    {% if p.imagenProducto %}
+                        <img src="{{ p.imagenProducto.url }}" class="card-img-top" alt="{{ p.modelo }} Imagen">
+                    {% endif %}
+                    <div class="card-body">
+                        <h5 class="card-title">{{ p.modelo }}, {{ p.autor }}</h5>
+                        <p class="card-text">{{ p.descripcion }}</p>
+                        {% if user.is_authenticated and user == p.autor %}
                             <button class="btn btn-danger">
-                                <a href="{% url 'eliminarProducto' p.modelo %}" style="text-decoration: none; color: #fff;">Eliminar</a>
+                                <a href="{% url 'editarProducto' p.id %}" style="text-decoration: none; color: #fff;">Editar</a>
                             </button>
-                        </div>
+                            <button class="btn btn-danger">
+                                <a href="{% url 'eliminarProducto' p.id %}" style="text-decoration: none; color: #fff;">Eliminar</a>
+                            </button>
+                        {% endif %}
                     </div>
                 </div>
-            {% endfor %}
-        </div>
+            </div>
+        {% endfor %}
     </div>
+</div>
 {% endblock section %}

@@ -1,5 +1,6 @@
 from django import forms
-from .models import Producto
+from django.core.validators import MinValueValidator, MaxValueValidator
+from .models import Producto, Experiencia
 from django.contrib.auth.forms import UserCreationForm, UserChangeForm
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
@@ -41,8 +42,15 @@ class ProductoFormulario(forms.ModelForm):
         model = Producto  # Agrega esta línea para especificar el modelo
         fields = ['modelo', 'descripcion', 'imagenProducto']
  
-class ExperienciaFormulario(forms.Form):
-    mensaje = forms.CharField(widget =forms.Textarea)
-    puntaje = forms.IntegerField()
+class ExperienciaFormulario(forms.ModelForm):
+    class Meta:
+        model = Experiencia
+        fields = ['mensaje', 'puntaje']
+        widgets = {
+            'mensaje': forms.Textarea,
+        }
 
-
+    puntaje = forms.IntegerField(
+        validators=[MinValueValidator(1), MaxValueValidator(10)],
+        widget=forms.NumberInput(attrs={'type': 'number', 'min': '1', 'max': '10'})
+    )

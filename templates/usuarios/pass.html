@@ -1,0 +1,25 @@
+<!-- cargar html base -->
+{% extends 'base.html' %}
+{% load static %}
+
+<!-- title -->
+{% block title %}
+<title>Editar contrasena</title>
+{% endblock title %}
+
+<!-- section -->
+{% block section %}
+    {% if formulario.errors %}
+        <p>Revisar datos</p>
+    {% endif %}
+
+    <h1>Editar contrasena - {{usuario}}</h1>
+
+    <form action="" method="POST">{% csrf_token %}
+        <table>
+            {{ form.as_p }}
+        </table>
+        <input type="submit", value="Enviar">
+    </form>  
+
+{% endblock section %}

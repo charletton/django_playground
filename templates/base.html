@@ -37,9 +37,12 @@
             <a class="nav-link" href="{%url 'lista'%}">Lista de productos</a>
           </li>
           <li class="nav-item">
-            <a class="nav-link" href="{%url 'experiencia'%}">Experiencias</a>
+            <a class="nav-link" href="{%url 'lista2'%}">Experiencias!</a>
           </li>
           {% if request.user.is_authenticated %}
+          <li class="nav-item">
+            <a class="nav-link" href="{%url 'experiencia'%}">Cargar experiencia</a>
+          </li>
           <li class="nav-item">
             <a class="nav-link" href="{%url 'producto'%}">Cargar producto</a>
           </li>

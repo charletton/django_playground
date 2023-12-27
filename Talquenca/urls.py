@@ -26,19 +26,24 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', index, name='index'),
     path('producto/', vista_de_formulario_producto , name='producto'),
-    path('experiencia/', vista_de_formulario_experiencia , name='experiencia'),
 
     #url de produtos 
     path('productos/', leerProductos , name='lista'),
-    path('eliminarProducto/<producto_modelo>/', eliminarProducto , name='eliminarProducto'),
-    path('editarProducto/<producto_modelo>/', editarProducto , name='eliminarProducto'),
+    path('eliminarProducto/<id>/', eliminarProducto , name='eliminarProducto'),
+    path('editarProducto/<id>/', editarProducto , name='editarProducto'),
 
     #url de usuarios
     path('login/', vista_de_login , name='login'),
     path('login/editar/', vista_de_edicion , name='editar_usuario'),
-
     path('registrarse/', vista_de_registro , name='registro'),
     path('logout/', LogoutView.as_view(template_name='usuarios/logout.html') ,name='logout'),
-    path('login/editar/password', CambiarContrasenia.as_view(template_name='usuarios/constasena.html') ,name='editar_contrasenia'),
+    path('login/editar/password/', CambiarContrasenia.as_view(), name='editar_contrasenia'),
+
+    #url de experiencias
+    path('experiencia/', vista_de_formulario_experiencia , name='experiencia'),
+    path('experiencia/lista', leerExperiencias , name='lista2'),
+    path('eliminarExperiencia/<experiencia_id>/', eliminarExperiencia , name='eliminarExperiencia'),
+    path('editarExperiencia/<experiencia_id>/', editarExperiencia , name='editarExperiencia'),
+
 
  ] + static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT)

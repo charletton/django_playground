@@ -1,24 +1,19 @@
-from django.core.validators import MinValueValidator, MaxValueValidator
 from django.db import models
-
-from django.db import models
+from django.contrib.auth.models import User
 
 class Producto(models.Model):
+    id = models.AutoField(primary_key=True)
+    autor = models.ForeignKey(User, on_delete=models.CASCADE)
     modelo = models.CharField(max_length=4)
-    descripcion = models.CharField(max_length=20, default='Describir producto')
+    descripcion = models.TextField(default='Describir producto')
     imagenProducto = models.ImageField(null=True, blank=True, upload_to="media/")
 
     def __str__(self):
-        return f'Producto: {self.modelo}'
+        return f'Producto: {self.modelo} - Autor: {self.autor.username}'
 
 class Experiencia(models.Model):
-    mensaje = models.TextField(default = 'Escribe tu mensaje')
-    puntaje = models.IntegerField(default=1,
-        validators=[
-            MinValueValidator(1, message="El valor debe ser 1 o mayor."),
-            MaxValueValidator(10, message="El valor debe ser 10 o menor.")
-        ]
-    )
-
+    id = models.AutoField(primary_key=True)
+    mensaje = models.TextField(default='Escribe tu mensaje')
+    puntaje = models.IntegerField(default=1)
 
 
