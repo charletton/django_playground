@@ -14,21 +14,20 @@
   <h2>Opiniones de Usuarios</h2>
   <hr>
 
-  {% for experiencia in experiencias %}
-    <div class="card mb-3">
-      <div class="card-body">
-        <h5 class="card-title">Puntuación: {{ experiencia.puntaje }}</h5>
-        <p class="card-text">{{ experiencia.mensaje }}</p>
-        {% if p.author == request.username %}
-            <button class="btn btn-danger">
-              <a href="{% url 'editarExperiencia' experiencia.id %}" style="text-decoration: none; color: #fff;">Editar</a>
-            </button>
-            <button class="btn btn-danger">
-              <a href="{% url 'eliminarExperiencia' experiencia_id=experiencia.id %}" style="text-decoration: none; color: #fff;">Eliminar</a>
-            </button>
-        {% endif %}
-      </div>
+{% for experiencia in experiencias %}
+  <div class="card mb-3">
+    <div class="card-body">
+      <h5 class="card-title">Puntuación: {{ experiencia.puntaje }}</h5>
+      <p class="card-text">{{ experiencia.mensaje }}</p>
+      <p class="card-text">{{ experiencia.autor }}</p>
+        <button class="btn btn-danger">
+          <a href="{% url 'editarExperiencia' experiencia.id %}" style="text-decoration: none; color: #fff;">Editar</a>
+        </button>
+        <button class="btn btn-danger">
+          <a href="{% url 'eliminarExperiencia' experiencia_id=experiencia.id %}" style="text-decoration: none; color: #fff;">Eliminar</a>
+        </button>
     </div>
-  {% endfor %}
+  </div>
+{% endfor %}
 
 {% endblock section %}

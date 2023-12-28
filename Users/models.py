@@ -12,8 +12,8 @@ class Producto(models.Model):
         return f'Producto: {self.modelo} - Autor: {self.autor.username}'
 
 class Experiencia(models.Model):
+    autor = models.ForeignKey(User, on_delete=models.CASCADE, null=True)
     id = models.AutoField(primary_key=True)
     mensaje = models.TextField(default='Escribe tu mensaje')
     puntaje = models.IntegerField(default=1)
-
 

@@ -9,8 +9,6 @@ from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
 from django.contrib.auth import login, authenticate
 from django.contrib.auth.mixins import LoginRequiredMixin
 
-from django.contrib import messages
-
 def index(request):
     return render(request, 'index.html')
 
@@ -92,12 +90,8 @@ def vista_de_formulario_producto(request):
                 imagenProducto=request.FILES.get('imagenProducto')
             )
             nuevo_producto.save()
-
-            messages.success(request, 'Producto creado exitosamente.')
             return render(request, 'extras/creado.html')
 
-        # Manejar errores y mostrar mensajes
-        messages.error(request, 'Error al crear el producto. Revisa los datos ingresados.')
         print(nuevo_formulario.errors)
 
     else:
@@ -111,18 +105,14 @@ def vista_de_formulario_experiencia(request):
         nuevo_formulario = ExperienciaFormulario(request.POST)
 
         if nuevo_formulario.is_valid():
-            informacion = nuevo_formulario.cleaned_data
-
-            nueva_experiencia = Experiencia(
-                mensaje=informacion['mensaje'],
-                puntaje=informacion['puntaje'],
-            )
+            nueva_experiencia = nuevo_formulario.save(commit=False)
+            nueva_experiencia.autor = request.user  # Asigna el usuario actual como autor
             nueva_experiencia.save()
-
             return render(request, 'extras/creado.html')
-    else: 
+    else:
         nuevo_formulario = ExperienciaFormulario()
-        return render(request, 'experiencia/experiencia.html', {'formulario': nuevo_formulario})
+
+    return render(request, 'experiencia/experiencia.html', {'formulario': nuevo_formulario})
 
 @login_required(login_url="login")
 def editarProducto(request, id):
@@ -132,7 +122,7 @@ def editarProducto(request, id):
         formulario = ProductoFormulario(request.POST, instance=producto)
         if formulario.is_valid():
             formulario.save()
-            return render(request, 'index.html')
+            return render(request, 'producto/edicion.html')
     else:
         formulario = ProductoFormulario(instance=producto)
 
@@ -157,7 +147,7 @@ def eliminarExperiencia(request, experiencia_id):
     if experiencia:
         experiencia.delete()
     experiencias_actualizadas = Experiencia.objects.all()
-    context = {'experiencia': experiencias_actualizadas}
+    context = {'experiencias': experiencias_actualizadas}
     return render(request, "experiencia/lista.html", context)
 
 
