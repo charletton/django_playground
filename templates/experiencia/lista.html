@@ -20,12 +20,14 @@
       <h5 class="card-title">Puntuación: {{ experiencia.puntaje }}</h5>
       <p class="card-text">{{ experiencia.mensaje }}</p>
       <p class="card-text">{{ experiencia.autor }}</p>
+      {% if experiencia.autor == request.user %}
         <button class="btn btn-danger">
           <a href="{% url 'editarExperiencia' experiencia.id %}" style="text-decoration: none; color: #fff;">Editar</a>
         </button>
         <button class="btn btn-danger">
           <a href="{% url 'eliminarExperiencia' experiencia_id=experiencia.id %}" style="text-decoration: none; color: #fff;">Eliminar</a>
         </button>
+      {% endif %}
     </div>
   </div>
 {% endfor %}

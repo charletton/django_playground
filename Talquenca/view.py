@@ -122,7 +122,7 @@ def editarProducto(request, id):
         formulario = ProductoFormulario(request.POST, instance=producto)
         if formulario.is_valid():
             formulario.save()
-            return render(request, 'producto/edicion.html')
+            return render(request, 'index.html')
     else:
         formulario = ProductoFormulario(instance=producto)
 
