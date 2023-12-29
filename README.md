@@ -19,3 +19,6 @@ ejecutar el script
 ```console
 python manage.py runserver
 ```
+
+### Demo del proyecto
+https://youtu.be/MDs7MlRCvLo
